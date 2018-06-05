@@ -88,7 +88,7 @@ Each plugin is sensitive to where you are and what you're doing, they reveal the
 
 ## [Tmux](https://en.wikipedia.org/wiki/Tmux)
 
-* Ctrl-B has been remapped to the backtick character (&#96;). If you want to type the actual backtick character (&#96;) itself, just hit the key twice.
+* Ctrl-B has been remapped to Ctrl-A. If you want to use Ctrl-A on the shell itself (going to the beginning of a line), just hit Ctrl-A twice.
 * `%` has been remapped to `v`.
 * Use vim movement keys for moving between panes. 
 * Copy buffer is coppied to xclip.
