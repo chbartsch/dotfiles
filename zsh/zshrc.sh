@@ -7,6 +7,7 @@
 # Aliases
 	alias v="vim -p"
 	mkdir -p /tmp/log
+	alias lh="ls -lah"
 	
 	# This is currently causing problems (fails when you run it anywhere that isn't a git project's root directory)
 	# alias vs="v `git status --porcelain | sed -ne 's/^ M //p'`"
@@ -36,9 +37,6 @@ source ~/dotfiles/zsh/plugins/fixls.zsh
 		ls;
 	}
 	alias cd="c"
-
-	# lh
-	lh() { ls -lah }
 
 # For vim mappings: 
 	stty -ixon
