@@ -4,7 +4,7 @@ time_out () { perl -e 'alarm shift; exec @ARGV' "$@"; }
 if [ $(id -u) -ne 0 ]; then
 	# Run tmux if exists
 	if command -v tmux>/dev/null; then
-		[ -z $TMUX ] && { tmux attach || exec tmux new-session; }
+		[ -z $TMUX ] && { { tmux attach || exec tmux new-session } && exit; }
 	else 
 		echo "tmux not installed. Run ./deploy to configure dependencies"
 	fi
