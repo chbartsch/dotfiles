@@ -37,6 +37,9 @@ source ~/dotfiles/zsh/plugins/fixls.zsh
 	}
 	alias cd="c"
 
+	# lh
+	lh() { ls -lah }
+
 # For vim mappings: 
 	stty -ixon
 
