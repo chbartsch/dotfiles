@@ -9,4 +9,4 @@
 	url = https://github.com/robbyrussell/oh-my-zsh.git
 [submodule "/home/christian/dotfiles/tmux/plugins/tpm"]
 	path = /home/christian/dotfiles/tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
+	url = https://github.com/tmux-plugins/tpm.git
