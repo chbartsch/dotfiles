@@ -51,7 +51,7 @@ check_default_shell() {
 }
 
 echo "We're going to do the following:"
-echo "1. Check to make sure you have zsh, vim, and tmux installed"
+echo "1. Check to make sure you have zsh, vim, tmux and xclip installed"
 echo "2. We'll help you install them if you don't"
 echo "3. We're going to check to see if your default shell is zsh"
 echo "4. We'll try to change it if it's not" 
@@ -74,6 +74,8 @@ echo
 check_for_software vim
 echo
 check_for_software tmux
+echo
+check_for_software xclip
 echo
 
 check_default_shell

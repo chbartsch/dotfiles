@@ -1,3 +1,9 @@
+## Sources
+
+This Repo has been forked from https://github.com/Parth/dotfiles.
+
+Additionally the tmux config was reconfigured referring to https://github.com/samoshkin/tmux-config.
+
 # Awesome Dotfiles
 
 Simple, but extensive customization of ZSH, TMUX, and Vim. 
@@ -25,7 +31,7 @@ Once the repo is cloned, execute the deploy script:
 
 This script guides you through the following:
 
-1. Checks to see if you have zsh, tmux, and vim installed. 
+1. Checks to see if you have zsh, tmux, vim and xclip installed. 
 2. Installs it using your default package manager if you don't have it installed.
 3. Checks to see if your default shell is zsh.
 4. Sets zsh to your default shell.
@@ -44,7 +50,8 @@ Upon launching a new shell, the first thing that's evaulated is `zshrc_manager.s
 ## [Zsh](https://en.wikipedia.org/wiki/Z_shell)
 
 * `cd` has been reassigned to `cd` and `ls`. Every time you navigate to a new directory, it will display the contents of that directory.
-* `v` has been aliased too: `vim -p`. This let's you open multiple files in vim as tabs. 
+* `v` has been aliased to `vim -p`. This let's you open multiple files in vim as tabs. 
+* `lh` has been aliased to `ls -lah`. This let's you list all files in a human readable long list 
 
 ### Prompt
 
