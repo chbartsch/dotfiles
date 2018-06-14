@@ -14,6 +14,7 @@
 
 # Settings
 	export VISUAL=vim
+	export EDITOR=vim
 
 source ~/dotfiles/zsh/plugins/fixls.zsh
 
