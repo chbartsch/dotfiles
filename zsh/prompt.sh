@@ -44,6 +44,8 @@ set_prompt() {
 #		PS1+=', '
 #		PS1+="%{$fg_bold[red]%}SUDO%{$reset_color%}"
 #	fi
+	PS1+=', '
+	PS1+="%{$fg_bold[red]%}$(whoami)%{$reset_color%}@$(hostname)"
 
 	PS1+="%{$fg[white]%}]: %{$reset_color%}% "
 }
