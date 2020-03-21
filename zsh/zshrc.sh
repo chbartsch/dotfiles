@@ -1,6 +1,6 @@
 # Vars
 	HISTFILE=~/.zsh_history
-	SAVEHIST=10000 
+	SAVEHIST=100000 
 	setopt inc_append_history # To save every command before it is executed 
 	setopt share_history # setopt inc_append_history
 
@@ -65,3 +65,8 @@ if [[ "${terminfo[kcud1]}" != "" ]]; then
 fi
 
 source ~/dotfiles/zsh/prompt.sh
+
+# source .profile if it exists
+if [ -f "$HOME/.profile" ] ; then
+  source $HOME/.profile
+fi
