@@ -1,3 +1,5 @@
+#!/bin/bash
+
 prompt_install() {
 	echo -n "$1 is not installed. Would you like to install it? (y/n) " >&2
 	old_stty_cfg=$(stty -g)
@@ -34,26 +36,26 @@ check_for_software() {
 }
 
 check_default_shell() {
-	if [ -z "${SHELL##*zsh*}" ] ;then
-			echo "Default shell is zsh."
+	if [ -z "${SHELL##*fish*}" ] ;then
+			echo "Default shell is fish."
 	else
-		echo -n "Default shell is not zsh. Do you want to chsh -s \$(which zsh)? (y/n)"
+		echo -n "Default shell is not fish. Do you want to chsh -s \$(which fish)? (y/n)"
 		old_stty_cfg=$(stty -g)
 		stty raw -echo
 		answer=$( while ! head -c 1 | grep -i '[ny]' ;do true ;done )
 		stty $old_stty_cfg && echo
 		if echo "$answer" | grep -iq "^y" ;then
-			chsh -s $(which zsh)
+			chsh -s $(which fish)
 		else
-			echo "Warning: Your configuration won't work properly. If you exec zsh, it'll exec tmux which will exec your default shell which isn't zsh."
+			echo "Warning: Your configuration won't work properly. If you exec fish, it'll exec tmux which will exec your default shell which isn't fish."
 		fi
 	fi
 }
 
 echo "We're going to do the following:"
-echo "1. Check to make sure you have zsh, vim, tmux, xclip and tpm installed"
+echo "1. Check to make sure you have zsh, fish, vim, tmux, xclip and tpm installed"
 echo "2. We'll help you install them if you don't"
-echo "3. We're going to check to see if your default shell is zsh"
+echo "3. We're going to check to see if your default shell is fish"
 echo "4. We'll try to change it if it's not" 
 
 echo "Let's get started? (y/n)"
@@ -69,7 +71,7 @@ else
 fi
 
 
-check_for_software zsh
+check_for_software fish
 echo 
 check_for_software vim
 echo
@@ -93,14 +95,21 @@ stty raw -echo
 answer=$( while ! head -c 1 | grep -i '[ny]' ;do true ;done )
 stty $old_stty_cfg
 if echo "$answer" | grep -iq "^y" ;then
-	mv ~/.zshrc ~/.zshrc.old
-	mv ~/.tmux.conf ~/.tmux.conf.old
-	mv ~/.vimrc ~/.vimrc.old
+#	mv ~/.zshrc ~/.zshrc.old
+	mv ~/.config/fish ~/.config/fish.bak
+	mv ~/.tmux.conf ~/.tmux.conf.bak
+	mv ~/.vimrc ~/.vimrc.bak
 else
 	echo -e "\nNot backing up old dotfiles."
 fi
 
-printf "source '$HOME/dotfiles/zsh/zshrc_manager.sh'" > ~/.zshrc
+printf "Install oh my fish\n"
+BASEDIR=$(dirname "$0")
+fish $BASEDIR/fish/install --path=~/.local/share/omf --config=~/.config/omf --noninteractive --yes
+fish --command="omf install lambda"
+
+cp -rf $BASEDIR/fish ~/.config/fish
+#printf "source '$HOME/dotfiles/zsh/zshrc_manager.sh'" > ~/.zshrc
 printf "so $HOME/dotfiles/vim/vimrc.vim" > ~/.vimrc
 printf "source-file $HOME/dotfiles/tmux/tmux.conf" > ~/.tmux.conf
 
