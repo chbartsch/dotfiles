@@ -12,4 +12,5 @@ end
 echo "updating configuration"
 #(cd ~/dotfiles && time_out 2 git pull && time_out 2 git submodule update --init --recursive)
 cd ~/dotfiles && git pull && git submodule update --init --recursive
+omf update
 #source ~/dotfiles/zsh/zshrc.sh
