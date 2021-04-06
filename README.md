@@ -31,10 +31,10 @@ Once the repo is cloned, execute the deploy script:
 
 This script guides you through the following:
 
-1. Checks to see if you have zsh, tmux, vim and xclip installed. 
+1. Checks to see if you have fish, tmux, vim and xclip installed. 
 2. Installs it using your default package manager if you don't have it installed.
-3. Checks to see if your default shell is zsh.
-4. Sets zsh to your default shell.
+3. Checks to see if your default shell is fish.
+4. Sets fish to your default shell.
 5. Backs up your old configuration files.
 
 Pretty convenient for configuring new servers.
@@ -43,7 +43,7 @@ Pretty convenient for configuring new servers.
 
 ## Basic runtime opperations 
 
-All default dotfiles (`.zshrc`, `.vimrc`, etc) source something within the dotfiles repository. This helps separate changes that are synced across all your machines with system specific changes.
+All default dotfiles (`.vimrc`, etc) source something within the dotfiles repository. This helps separate changes that are synced across all your machines with system specific changes.
 
 Upon launching a new shell, the first thing that's evaulated is `zshrc_manager.sh`. This script first launches tmux. Then once zsh logs in, within tmux, it updates the dotfiles repository, and sources the changes.
 
