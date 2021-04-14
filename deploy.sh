@@ -108,7 +108,7 @@ BASEDIR=$(dirname "$0")
 fish $BASEDIR/fish/install --path=~/.local/share/omf --config=~/.config/omf --noninteractive --yes
 fish --command="omf install lambda"
 
-cp -rf $BASEDIR/fish ~/.config/fish
+cp -rf $BASEDIR/fish ~/.config/
 #printf "source '$HOME/dotfiles/zsh/zshrc_manager.sh'" > ~/.zshrc
 printf "so $HOME/dotfiles/vim/vimrc.vim" > ~/.vimrc
 printf "source-file $HOME/dotfiles/tmux/tmux.conf" > ~/.tmux.conf
