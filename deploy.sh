@@ -103,10 +103,10 @@ else
 	echo -e "\nNot backing up old dotfiles."
 fi
 
-printf "Install oh my fish\n"
+#printf "Install oh my fish\n"
 BASEDIR=$(dirname "$0")
-fish $BASEDIR/fish/install --path=~/.local/share/omf --config=~/.config/omf --noninteractive --yes
-fish --command="omf install lambda"
+#fish $BASEDIR/fish/install --path=~/.local/share/omf --config=~/.config/omf --noninteractive --yes
+#fish --command="omf install lambda"
 
 cp -rf $BASEDIR/fish ~/.config/
 #printf "source '$HOME/dotfiles/zsh/zshrc_manager.sh'" > ~/.zshrc
