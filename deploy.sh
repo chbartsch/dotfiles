@@ -102,7 +102,7 @@ else
 	echo -e "\nNot backing up old dotfiles."
 fi
 
-printf "Install oh my fish\n"
+printf "Install oh my bash\n"
 bash -c "$(wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -O -)" --unattended
 
 BASEDIR=$(dirname "$0")
