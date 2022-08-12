@@ -36,26 +36,26 @@ check_for_software() {
 }
 
 check_default_shell() {
-	if [ -z "${SHELL##*fish*}" ] ;then
-			echo "Default shell is fish."
+	if [ -z "${SHELL##*bash*}" ] ;then
+			echo "Default shell is bash."
 	else
-		echo -n "Default shell is not fish. Do you want to chsh -s \$(which fish)? (y/n)"
+		echo -n "Default shell is not bash. Do you want to chsh -s \$(which bash)? (y/n)"
 		old_stty_cfg=$(stty -g)
 		stty raw -echo
 		answer=$( while ! head -c 1 | grep -i '[ny]' ;do true ;done )
 		stty $old_stty_cfg && echo
 		if echo "$answer" | grep -iq "^y" ;then
-			chsh -s $(which fish)
+			chsh -s $(which bash)
 		else
-			echo "Warning: Your configuration won't work properly. If you exec fish, it'll exec tmux which will exec your default shell which isn't fish."
+			echo "Warning: Your configuration won't work properly. If you exec bash, it'll exec tmux which will exec your default shell which isn't bash."
 		fi
 	fi
 }
 
 echo "We're going to do the following:"
-echo "1. Check to make sure you have zsh, fish, vim, tmux, xclip and tpm installed"
+echo "1. Check to make sure you have wget, vim, tmux, xclip and tpm installed"
 echo "2. We'll help you install them if you don't"
-echo "3. We're going to check to see if your default shell is fish"
+echo "3. We're going to check to see if your default shell is bash"
 echo "4. We'll try to change it if it's not" 
 
 echo "Let's get started? (y/n)"
@@ -71,8 +71,8 @@ else
 fi
 
 
-check_for_software fish
-echo 
+check_for_software wget
+echo
 check_for_software vim
 echo
 check_for_software tmux
@@ -95,21 +95,19 @@ stty raw -echo
 answer=$( while ! head -c 1 | grep -i '[ny]' ;do true ;done )
 stty $old_stty_cfg
 if echo "$answer" | grep -iq "^y" ;then
-#	mv ~/.zshrc ~/.zshrc.old
-	mv ~/.config/fish ~/.config/fish.bak
+	mv ~/.bashrc ~/.bashrc.bak
 	mv ~/.tmux.conf ~/.tmux.conf.bak
 	mv ~/.vimrc ~/.vimrc.bak
 else
 	echo -e "\nNot backing up old dotfiles."
 fi
 
-#printf "Install oh my fish\n"
-BASEDIR=$(dirname "$0")
-#fish $BASEDIR/fish/install --path=~/.local/share/omf --config=~/.config/omf --noninteractive --yes
-#fish --command="omf install lambda"
+printf "Install oh my fish\n"
+bash -c "$(wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -O -)" --unattended
 
-cp -rf $BASEDIR/fish ~/.config/
-#printf "source '$HOME/dotfiles/zsh/zshrc_manager.sh'" > ~/.zshrc
+BASEDIR=$(dirname "$0")
+
+cp -$BASEDIR/bash/.bashrc ~/.bashrc
 printf "so $HOME/dotfiles/vim/vimrc.vim" > ~/.vimrc
 printf "source-file $HOME/dotfiles/tmux/tmux.conf" > ~/.tmux.conf
 
