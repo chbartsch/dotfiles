@@ -120,3 +120,18 @@ source "$OSH"/oh-my-bash.sh
 # Example aliases
 # alias bashconfig="mate ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
+
+
+# start tmux only if we are not root
+if [ $(id -u) -ne 0 ]; then
+ #   # Run tmux if exists
+    if command -v tmux > /dev/null; then
+        [ -z $TMUX ] && ( ( tmux attach || exec tmux new-session ) && exit; )
+    elif true; then
+        echo "tmux not installed. Run ./deploy to configure dependencies"
+    fi
+fi
+
+echo "updating configuration"
+#(cd ~/dotfiles && time_out 2 git pull && time_out 2 git submodule update --init --recursive)
+(cd $HOME/dotfiles && git pull && git submodule update --init --recursive) #&& cd $HOME
