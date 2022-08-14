@@ -134,4 +134,4 @@ fi
 
 echo "updating configuration"
 #(cd ~/dotfiles && time_out 2 git pull && time_out 2 git submodule update --init --recursive)
-(cd $HOME/dotfiles && git pull && git submodule update --init --recursive) #&& cd $HOME
+(cd $HOME/dotfiles && git pull --rebase && git submodule update --init --recursive) #&& cd $HOME
