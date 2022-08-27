@@ -122,6 +122,7 @@ source "$OSH"/oh-my-bash.sh
 # alias ohmybash="mate ~/.oh-my-bash"
 
 alias lh='ls -lah'
+alias tmx='(tmux attach || tmux)'
 
 # https://askubuntu.com/questions/59846/bash-history-search-partial-up-arrow
 ## arrow up
