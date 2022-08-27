@@ -140,4 +140,4 @@ alias lh='ls -lah'
 # fi
 
 echo "updating configuration"
-(cd $HOME/dotfiles && git pull && git submodule update --init --recursive)
+(cd $HOME/dotfiles && git pull --rebase && git submodule update --init --recursive)
