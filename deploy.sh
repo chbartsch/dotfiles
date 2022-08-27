@@ -79,7 +79,7 @@ check_for_software tmux
 echo
 check_for_software xclip
 echo
-check_for_software fonts-powerline
+prompt_install fonts-powerline
 echo
 
 
