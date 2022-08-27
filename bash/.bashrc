@@ -121,17 +121,23 @@ source "$OSH"/oh-my-bash.sh
 # alias bashconfig="mate ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
 
+alias lh='ls -lah'
 
-# start tmux only if we are not root
-if [ $(id -u) -ne 0 ]; then
- #   # Run tmux if exists
-    if command -v tmux > /dev/null; then
-        [ -z $TMUX ] && ( ( tmux attach || exec tmux new-session ) && exit; )
-    elif true; then
-        echo "tmux not installed. Run ./deploy to configure dependencies"
-    fi
-fi
+# https://askubuntu.com/questions/59846/bash-history-search-partial-up-arrow
+## arrow up
+#"\e[A":history-search-backward
+## arrow down
+#"\e[B":history-search-forward 
+
+# # start tmux only if we are not root
+# if false; then #[ $(id -u) -ne 0 ]; then
+#  #   # Run tmux if exists
+#     if command -v tmux > /dev/null; then
+#         [ -z $TMUX ] && ( ( tmux attach || exec tmux new-session ) && exit; )
+#     elif true; then
+#         echo "tmux not installed. Run ./deploy to configure dependencies"
+#     fi
+# fi
 
 echo "updating configuration"
-#(cd ~/dotfiles && time_out 2 git pull && time_out 2 git submodule update --init --recursive)
-(cd $HOME/dotfiles && git pull --rebase && git submodule update --init --recursive) #&& cd $HOME
+(cd $HOME/dotfiles && git pull && git submodule update --init --recursive)

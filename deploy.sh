@@ -107,9 +107,9 @@ bash -c "$(wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/too
 
 BASEDIR=$(dirname "$0")
 
-cp -$BASEDIR/bash/.bashrc ~/.bashrc
-printf "so $HOME/dotfiles/vim/vimrc.vim" > ~/.vimrc
-printf "source-file $HOME/dotfiles/tmux/tmux.conf" > ~/.tmux.conf
+cp -$BASEDIR/bash/.bashrc $HOME/.bashrc
+printf "so $HOME/dotfiles/vim/vimrc.vim" > $HOME/.vimrc
+printf "source-file $HOME/dotfiles/tmux/tmux.conf" > $HOME/.tmux.conf
 
 # Install TPM plugins.
 # TPM requires running tmux server, as soon as `tmux start-server` does not work
