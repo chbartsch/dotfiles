@@ -138,17 +138,7 @@ alias tmx='(tmux attach || tmux)'
 ## arrow up
 #"\e[A":history-search-backward
 ## arrow down
-#"\e[B":history-search-forward 
-
-# # start tmux only if we are not root
-# if false; then #[ $(id -u) -ne 0 ]; then
-#  #   # Run tmux if exists
-#     if command -v tmux > /dev/null; then
-#         [ -z $TMUX ] && ( ( tmux attach || exec tmux new-session ) && exit; )
-#     elif true; then
-#         echo "tmux not installed. Run ./deploy to configure dependencies"
-#     fi
-# fi
+#"\e[B":history-search-forward
 
 echo "updating configuration"
-(cd $HOME/dotfiles && git pull && git submodule update --init --recursive)
+(cd $HOME/dotfiles && git pull --rebase && git submodule update --init --recursive)
