@@ -79,6 +79,9 @@ check_for_software tmux
 echo
 check_for_software xclip
 echo
+check_for_software fonts-powerline
+echo
+
 
 if [ ! -e "$HOME/.tmux/plugins/tpm" ]; then
   printf "WARNING: Cannot found TPM (Tmux Plugin Manager) \

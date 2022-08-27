@@ -5,11 +5,12 @@ case $- in
 esac
 
 # Path to your oh-my-bash installation.
-export OSH=$HOME/.oh-my-bash
+export OSH=/home/christian/.oh-my-bash
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
-OSH_THEME="font"
+#OSH_THEME="font"
+OSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -65,6 +66,11 @@ completions=(
   git
   composer
   ssh
+  pip
+  pip3
+  tmux
+  docker
+  docker-compose
 )
 
 # Which aliases would you like to load? (aliases can be found in ~/.oh-my-bash/aliases/*)
@@ -73,6 +79,7 @@ completions=(
 # Add wisely, as too many aliases slow down shell startup.
 aliases=(
   general
+  ls
 )
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-bash/plugins/*)
@@ -82,7 +89,10 @@ aliases=(
 plugins=(
   git
   bashmarks
+  tmux-autoattach
 )
+# auto-attach only when ssh
+#[ "$SSH_TTY" ] && plugins+=(tmux-autoattach)
 
 # Which plugins would you like to conditionally load? (plugins can be found in ~/.oh-my-bash/plugins/*)
 # Custom plugins may be added to ~/.oh-my-bash/custom/plugins/
@@ -141,4 +151,4 @@ alias tmx='(tmux attach || tmux)'
 # fi
 
 echo "updating configuration"
-(cd $HOME/dotfiles && git pull --rebase && git submodule update --init --recursive)
+(cd $HOME/dotfiles && git pull && git submodule update --init --recursive)
