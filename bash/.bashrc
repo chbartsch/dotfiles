@@ -86,6 +86,7 @@ aliases=(
 # Custom plugins may be added to ~/.oh-my-bash/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+OSH_PLUGIN_TMUX_AUTOATTACH_BEHAVIOR=exit
 plugins=(
   git
   bashmarks
