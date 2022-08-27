@@ -110,7 +110,8 @@ bash -c "$(wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/too
 
 BASEDIR=$(dirname "$0")
 
-cp $BASEDIR/bash/.bashrc $HOME/.bashrc
+#cp $BASEDIR/bash/.bashrc $HOME/.bashrc
+ln -s $BASEDIR/bash/.bashrc $HOME/.bashrc
 printf "so $HOME/dotfiles/vim/vimrc.vim" > $HOME/.vimrc
 printf "source-file $HOME/dotfiles/tmux/tmux.conf" > $HOME/.tmux.conf
 
