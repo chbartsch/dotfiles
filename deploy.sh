@@ -138,7 +138,7 @@ ln -s -f $HOME/.oh-my-tmux/.tmux.conf $HOME/.tmux.conf
 
 # setup locales
 sudo locale-gen --purge de_DE.UTF-8
-echo -e 'LANG="de_DE.UTF-8"\nLANGUAGE="de_DE:de"\n' > sudo /etc/default/locale
+sudo bash -c "echo -e 'LANG=\"de_DE.UTF-8\"\nLANGUAGE=\"de_DE:de\"\n' > /etc/default/locale"
 
 
 # check for default shell
