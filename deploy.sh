@@ -130,7 +130,7 @@ fi
 echo "Install oh-my-tmux"
 if [ -d "$HOME/.oh-my-tmux" ]; then
 	(cd $HOME/.oh-my-tmux && git pull --rebase)
-elseecho -e 'LANG="de_DE.UTF-8"\nLANGUAGE="de_DE:de"\n' > /etc/default/locale
+else
 	git clone https://github.com/gpakosz/.tmux.git $HOME/.oh-my-tmux
 fi
 ln -s -f $HOME/.oh-my-tmux/.tmux.conf $HOME/.tmux.conf
