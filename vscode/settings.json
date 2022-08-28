@@ -5,5 +5,6 @@
   "git.autofetch": true,
   "redhat.telemetry.enabled": false,
   "terminal.integrated.defaultProfile.linux": "tmux",
-  "workbench.colorTheme": "Default Dark+"
+  "workbench.colorTheme": "Default Dark+",
+  "editor.tabSize": 2
 }
