@@ -1,0 +1,9 @@
+{
+  "telemetry.enableCrashReporter": false, // deprecated
+  "telemetry.enableTelemetry": false, // deprecated
+  "telemetry.telemetryLevel": "off",
+  "git.autofetch": true,
+  "redhat.telemetry.enabled": false,
+  "terminal.integrated.defaultProfile.linux": "tmux",
+  "workbench.colorTheme": "Default Dark+"
+}

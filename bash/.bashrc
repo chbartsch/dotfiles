@@ -5,7 +5,7 @@ case $- in
 esac
 
 # Path to your oh-my-bash installation.
-export OSH=/home/christian/.oh-my-bash
+export OSH=$HOME/.oh-my-bash
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
@@ -82,11 +82,13 @@ aliases=(
   ls
 )
 
+# exit tmux/shell instead of detach
+OSH_PLUGIN_TMUX_AUTOATTACH_BEHAVIOR=exit
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-bash/plugins/*)
 # Custom plugins may be added to ~/.oh-my-bash/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-OSH_PLUGIN_TMUX_AUTOATTACH_BEHAVIOR=exit
 plugins=(
   git
   bashmarks
@@ -132,14 +134,10 @@ source "$OSH"/oh-my-bash.sh
 # alias bashconfig="mate ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
 
-alias lh='ls -lah'
-alias tmx='(tmux attach || tmux)'
+# oh-my-tmux requirements
+# TODO: really?
+#export TERM=xterm-256color
 
-# https://askubuntu.com/questions/59846/bash-history-search-partial-up-arrow
-## arrow up
-#"\e[A":history-search-backward
-## arrow down
-#"\e[B":history-search-forward
 
 echo "updating configuration"
-(cd $HOME/dotfiles && git pull --rebase && git submodule update --init --recursive)
+(cd $HOME/dotfiles && git pull --rebase) # && git submodule update --init --recursive)

@@ -1,8 +1,6 @@
 ## Sources
 
-This Repo has been forked from https://github.com/Parth/dotfiles.
-
-Additionally the tmux config was reconfigured referring to https://github.com/samoshkin/tmux-config.
+This Repo has been forked from https://github.com/Parth/dotfiles - but it's not too much left of it after several changes have been made.
 
 # Awesome Dotfiles
 

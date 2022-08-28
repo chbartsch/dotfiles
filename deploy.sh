@@ -21,14 +21,14 @@ prompt_install() {
 			sudo pacman -S $1
 
 		else
-			echo "I'm not sure what your package manager is! Please install $1 on your own and run this deploy script again. Tests for package managers are in the deploy script you just ran starting at line 13. Feel free to make a pull request at https://github.com/parth/dotfiles :)" 
+			echo "I'm not sure what your package manager is! Please install $1 on your own and run this deploy script again." 
 		fi 
 	fi
 }
 
 check_for_software() {
 	echo "Checking to see if $1 is installed"
-	if ! [ -x "$(command -v $1)" ]; then
+	if ! ( [ -x "$(command -v $1)" ] || [ "$(dpkg -l | grep $1)" ] ); then
 		prompt_install $1
 	else
 		echo "$1 is installed."
@@ -53,7 +53,7 @@ check_default_shell() {
 }
 
 echo "We're going to do the following:"
-echo "1. Check to make sure you have wget, vim, tmux, xclip and tpm installed"
+echo "1. Check to make sure you have wget, vim, tmux and fonts-powerline"
 echo "2. We'll help you install them if you don't"
 echo "3. We're going to check to see if your default shell is bash"
 echo "4. We'll try to change it if it's not" 
@@ -71,58 +71,73 @@ else
 fi
 
 
+# base requirements
 check_for_software wget
 echo
 check_for_software vim
 echo
 check_for_software tmux
 echo
-check_for_software xclip
-echo
-prompt_install fonts-powerline
+check_for_software git
 echo
 
+# oh-my-bash "agnoster"-theme requirements
+check_for_software fonts-powerline
+echo
 
-if [ ! -e "$HOME/.tmux/plugins/tpm" ]; then
-  printf "WARNING: Cannot found TPM (Tmux Plugin Manager) \
-    at default location: \$HOME/.tmux/plugins/tpm.\n"
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
+# oh-my-tmux requirements
+check_for_software awk
+echo
+check_for_software sed
+echo
+check_for_software perl
+echo
 
+
+# check for default shell
 check_default_shell
 
+
+# backup current dotfiles
 echo
 echo -n "Would you like to backup your current dotfiles? (y/n) "
 old_stty_cfg=$(stty -g)
 stty raw -echo
 answer=$( while ! head -c 1 | grep -i '[ny]' ;do true ;done )
 stty $old_stty_cfg
+now=$(date +"%Y-%m-%d_%H-%M-%S")
 if echo "$answer" | grep -iq "^y" ;then
-	mv ~/.bashrc ~/.bashrc.bak
-	mv ~/.tmux.conf ~/.tmux.conf.bak
-	mv ~/.vimrc ~/.vimrc.bak
+	mv ~/.bashrc ~/.bashrc.${now}
+	mv ~/.tmux.conf ~/.tmux.conf.c
+	mv ~/.vimrc ~/.vimrc.${now}
+	mv ~/.config/Code/User/settings.json ~/.config/Code/User/settings.json.${now}
+	mv ~/.config/Code/User/keybindings.json ~/.config/Code/User/keybindings.json.${now}
 else
 	echo -e "\nNot backing up old dotfiles."
 fi
 
-printf "Install oh my bash\n"
-bash -c "$(wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -O -)" --unattended
 
+# the directory this script is in
 BASEDIR=$(dirname "$0")
 
-#cp $BASEDIR/bash/.bashrc $HOME/.bashrc
-ln -s $BASEDIR/bash/.bashrc $HOME/.bashrc
-printf "so $HOME/dotfiles/vim/vimrc.vim" > $HOME/.vimrc
-printf "source-file $HOME/dotfiles/tmux/tmux.conf" > $HOME/.tmux.conf
 
-# Install TPM plugins.
-# TPM requires running tmux server, as soon as `tmux start-server` does not work
-# create dump __noop session in detached mode, and kill it when plugins are installed
-printf "Install TPM plugins\n"
-tmux new -d -s __noop >/dev/null 2>&1 || true 
-tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH "~/.tmux/plugins"
-"$HOME"/.tmux/plugins/tpm/bin/install_plugins || true
-tmux kill-session -t __noop >/dev/null 2>&1 || true
+echo "Install oh-my-bash"
+bash -c "$(wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -O -)" --unattended
+
+echo "Install oh-my-tmux"
+git clone https://github.com/gpakosz/.tmux.git $HOME/.oh-my-tmux
+ln -s -f $HOME/.oh-my-tmux/.tmux.conf $HOME/.tmux.conf
+
+
+# symlink custom configs from this folder
+ln -s -f $BASEDIR/bash/.bashrc $HOME/.bashrc
+ln -s -f $BASEDIR/tmux/.tmux.conf.local $HOME/.tmux.conf.local
+printf "so $BASEDIR/vim/vimrc.vim" > $HOME/.vimrc
+
+mkdir -p $HOME/.config/Code/User/
+ln -s -f $HOME/$BASEDIR/vscode/settings.json $HOME/.config/Code/User/settings.json
+ln -s -f $HOME/$BASEDIR/vscode/keybindings.json $HOME/.config/Code/User/keybindings.json
+
 
 echo
 echo "Please log out and log back in for default shell to be initialized."
