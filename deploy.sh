@@ -92,6 +92,8 @@ check_for_software sed
 echo
 check_for_software perl
 echo
+check_for_software xclip
+echo
 
 
 # check for default shell
@@ -122,10 +124,18 @@ BASEDIR=$(dirname "$0")
 
 
 echo "Install oh-my-bash"
-bash -c "$(wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -O -)" --unattended
+if [ -d "$HOME/.oh-my-bash" ]; then
+	(cd $HOME/.oh-my-bash && git pull --rebase)
+else
+	bash -c "$(wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -O -)" --unattended
+fi
 
 echo "Install oh-my-tmux"
-git clone https://github.com/gpakosz/.tmux.git $HOME/.oh-my-tmux
+if [ -d "$HOME/.oh-my-tmux" ]; then
+	(cd $HOME/.oh-my-tmux && git pull --rebase)
+else
+	git clone https://github.com/gpakosz/.tmux.git $HOME/.oh-my-tmux
+fi
 ln -s -f $HOME/.oh-my-tmux/.tmux.conf $HOME/.tmux.conf
 
 
