@@ -104,3 +104,6 @@ export EDITOR='vim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias lh="ll -a"
+
+# move tmux status line when in ssh session
+[[ $SSH_CONNECTION ]] && tmux set -g status-position bottom
