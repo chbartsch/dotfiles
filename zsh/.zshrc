@@ -107,3 +107,6 @@ alias lh="ll -a"
 
 # move tmux status line when in ssh session
 [[ $SSH_CONNECTION ]] && tmux set -g status-position bottom
+
+echo "updating configuration"
+(cd $HOME/dotfiles && git pull --rebase) # && git submodule update --init --recursive)
