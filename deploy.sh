@@ -154,8 +154,6 @@ mkdir -p $HOME/.config/Code/User/
 ln -s -f $HOME/$BASEDIR/vscode/settings.json $HOME/.config/Code/User/settings.json
 ln -s -f $HOME/$BASEDIR/vscode/keybindings.json $HOME/.config/Code/User/keybindings.json
 
-ln -s -f $HOME/$BASEDIR/zsh/.zshrc $HOME/.zshrc
-
 
 echo
 echo "Please log out and log back in for default shell to be initialized."
