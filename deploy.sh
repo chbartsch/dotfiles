@@ -141,9 +141,9 @@ check_default_shell
 
 
 # symlink custom configs from this folder
-ln -s -f $BASEDIR/zsh/.zshrc $HOME/.zshrc
-ln -s -f $BASEDIR/tmux/.tmux.conf.local $HOME/.tmux.conf.local
-printf "so $BASEDIR/vim/vimrc.vim" > $HOME/.vimrc
+ln -s -f $HOME/$BASEDIR/zsh/.zshrc $HOME/.zshrc
+ln -s -f $HOME/$BASEDIR/tmux/.tmux.conf.local $HOME/.tmux.conf.local
+printf "so $HOME/$BASEDIR/vim/vimrc.vim" > $HOME/.vimrc
 
 mkdir -p $HOME/.config/Code/User/
 ln -s -f $HOME/$BASEDIR/vscode/settings.json $HOME/.config/Code/User/settings.json
