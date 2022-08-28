@@ -354,6 +354,11 @@ set -g mode-keys vi
 # set -g prefix C-a
 # bind C-a send-prefix
 
+# replace C-a by C-y
+set -g prefix C-y
+unbind-key C-a
+bind-key C-y send-prefix
+
 # if you don't want Oh my tmux! to alter a binding, use #!important
 # bind v new-window -c #{pane_current_path} #!important
 
