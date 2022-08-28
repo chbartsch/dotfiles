@@ -53,7 +53,7 @@ check_default_shell() {
 }
 
 echo "We're going to do the following:"
-echo "1. Check to make sure you have zsh, wget, vim, tmux and fonts-powerline"
+echo "1. Check to make sure you have zsh, wget, vim, tmux, fzf and fonts-powerline"
 echo "2. We'll help you install them if you don't"
 echo "3. We're going to check to see if your default shell is zsh"
 echo "4. We'll try to change it if it's not" 
@@ -85,6 +85,8 @@ echo
 
 # oh-my-zsh "agnoster"-theme requirements
 check_for_software fonts-powerline
+echo
+check_for_software fzf
 echo
 
 # oh-my-tmux requirements

@@ -73,7 +73,7 @@ export ZSH_TMUX_AUTOSTART="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux)
+plugins=(tmux fzf)
 
 source $ZSH/oh-my-zsh.sh
 
