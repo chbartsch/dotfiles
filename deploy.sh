@@ -36,26 +36,26 @@ check_for_software() {
 }
 
 check_default_shell() {
-	if [ -z "${SHELL##*bash*}" ] ;then
-			echo "Default shell is bash."
+	if [ -z "${SHELL##*zsh*}" ] ;then
+		echo "Default shell is zsh."
 	else
-		echo -n "Default shell is not bash. Do you want to chsh -s \$(which bash)? (y/n)"
+		echo -n "Default shell is not zsh. Do you want to chsh -s \$(which zsh)? (y/n)"
 		old_stty_cfg=$(stty -g)
 		stty raw -echo
 		answer=$( while ! head -c 1 | grep -i '[ny]' ;do true ;done )
 		stty $old_stty_cfg && echo
 		if echo "$answer" | grep -iq "^y" ;then
-			chsh -s $(which bash)
+			chsh -s $(which zsh)
 		else
-			echo "Warning: Your configuration won't work properly. If you exec bash, it'll exec tmux which will exec your default shell which isn't bash."
+			echo "Warning: Your configuration won't work properly. If you exec zsh, it'll exec tmux which will exec your default shell which isn't zsh."
 		fi
 	fi
 }
 
 echo "We're going to do the following:"
-echo "1. Check to make sure you have wget, vim, tmux and fonts-powerline"
+echo "1. Check to make sure you have zsh, wget, vim, tmux and fonts-powerline"
 echo "2. We'll help you install them if you don't"
-echo "3. We're going to check to see if your default shell is bash"
+echo "3. We're going to check to see if your default shell is zsh"
 echo "4. We'll try to change it if it's not" 
 
 echo "Let's get started? (y/n)"
@@ -80,8 +80,10 @@ check_for_software tmux
 echo
 check_for_software git
 echo
+check_for_software zsh
+echo
 
-# oh-my-bash "agnoster"-theme requirements
+# oh-my-zsh "agnoster"-theme requirements
 check_for_software fonts-powerline
 echo
 
@@ -96,10 +98,6 @@ check_for_software xclip
 echo
 
 
-# check for default shell
-check_default_shell
-
-
 # backup current dotfiles
 echo
 echo -n "Would you like to backup your current dotfiles? (y/n) "
@@ -109,11 +107,10 @@ answer=$( while ! head -c 1 | grep -i '[ny]' ;do true ;done )
 stty $old_stty_cfg
 now=$(date +"%Y-%m-%d_%H-%M-%S")
 if echo "$answer" | grep -iq "^y" ;then
-	mv ~/.bashrc ~/.bashrc.${now}
-	mv ~/.tmux.conf ~/.tmux.conf.c
-	mv ~/.vimrc ~/.vimrc.${now}
-	mv ~/.config/Code/User/settings.json ~/.config/Code/User/settings.json.${now}
-	mv ~/.config/Code/User/keybindings.json ~/.config/Code/User/keybindings.json.${now}
+	mv $HOME/.tmux.conf $HOME/.tmux.conf.${now}
+	mv $HOME/.vimrc $HOME/.vimrc.${now}
+	mv $HOME/.config/Code/User/settings.json $HOME/.config/Code/User/settings.json.${now}
+	mv $HOME/.config/Code/User/keybindings.json $HOME/.config/Code/User/keybindings.json.${now}
 else
 	echo -e "\nNot backing up old dotfiles."
 fi
@@ -123,11 +120,11 @@ fi
 BASEDIR=$(dirname "$0")
 
 
-echo "Install oh-my-bash"
-if [ -d "$HOME/.oh-my-bash" ]; then
-	(cd $HOME/.oh-my-bash && git pull --rebase)
+echo "Install oh-my-zsh"
+if [ -d "$HOME/.oh-my-zsh" ]; then
+	(cd $HOME/.oh-my-zsh && git pull --rebase)
 else
-	bash -c "$(wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -O -)" --unattended
+	sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
 fi
 
 echo "Install oh-my-tmux"
@@ -139,8 +136,12 @@ fi
 ln -s -f $HOME/.oh-my-tmux/.tmux.conf $HOME/.tmux.conf
 
 
+# check for default shell
+check_default_shell
+
+
 # symlink custom configs from this folder
-ln -s -f $BASEDIR/bash/.bashrc $HOME/.bashrc
+ln -s -f $BASEDIR/zsh/.zshrc $HOME/.zshrc
 ln -s -f $BASEDIR/tmux/.tmux.conf.local $HOME/.tmux.conf.local
 printf "so $BASEDIR/vim/vimrc.vim" > $HOME/.vimrc
 
