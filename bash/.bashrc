@@ -138,6 +138,10 @@ source "$OSH"/oh-my-bash.sh
 # TODO: really?
 #export TERM=xterm-256color
 
+# move tmux status line when in ssh session
+[[ $SSH_CONNECTION ]] && tmux set -g status-position bottom
+
+
 
 echo "updating configuration"
 (cd $HOME/dotfiles && git pull --rebase) # && git submodule update --init --recursive)
