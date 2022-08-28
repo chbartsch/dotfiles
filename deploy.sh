@@ -130,10 +130,15 @@ fi
 echo "Install oh-my-tmux"
 if [ -d "$HOME/.oh-my-tmux" ]; then
 	(cd $HOME/.oh-my-tmux && git pull --rebase)
-else
+elseecho -e 'LANG="de_DE.UTF-8"\nLANGUAGE="de_DE:de"\n' > /etc/default/locale
 	git clone https://github.com/gpakosz/.tmux.git $HOME/.oh-my-tmux
 fi
 ln -s -f $HOME/.oh-my-tmux/.tmux.conf $HOME/.tmux.conf
+
+
+# setup locales
+locale-gen --purge de_DE.UTF-8
+echo -e 'LANG="de_DE.UTF-8"\nLANGUAGE="de_DE:de"\n' > /etc/default/locale
 
 
 # check for default shell
@@ -148,6 +153,8 @@ printf "so $HOME/$BASEDIR/vim/vimrc.vim" > $HOME/.vimrc
 mkdir -p $HOME/.config/Code/User/
 ln -s -f $HOME/$BASEDIR/vscode/settings.json $HOME/.config/Code/User/settings.json
 ln -s -f $HOME/$BASEDIR/vscode/keybindings.json $HOME/.config/Code/User/keybindings.json
+
+ln -s -f $HOME/$BASEDIR/zsh/.zshrc $HOME/.zshrc
 
 
 echo
