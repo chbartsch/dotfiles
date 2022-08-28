@@ -124,7 +124,7 @@ echo "Install oh-my-zsh"
 if [ -d "$HOME/.oh-my-zsh" ]; then
 	(cd $HOME/.oh-my-zsh && git pull --rebase)
 else
-	sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
+	sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) --unattended"
 fi
 
 echo "Install oh-my-tmux"
