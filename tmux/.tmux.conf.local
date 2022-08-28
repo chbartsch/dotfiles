@@ -355,8 +355,9 @@ set -g mode-keys vi
 # bind C-a send-prefix
 
 # replace C-a by C-y
-set -g prefix C-y
-unbind-key C-a
+set -gu prefix2
+unbind C-a
+set -g prefix2 C-y
 bind-key C-y send-prefix
 
 # if you don't want Oh my tmux! to alter a binding, use #!important
