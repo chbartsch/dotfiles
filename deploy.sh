@@ -129,6 +129,13 @@ else
 	sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) --unattended"
 fi
 
+echo "Install zsh-autosuggestions plugin"
+if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
+	(cd $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions && git pull --rebase)
+else
+	(cd $HOME/.oh-my-zsh/custom/plugins && git clone https://github.com/zsh-users/zsh-autosuggestions.git)
+fi
+
 echo "Install oh-my-tmux"
 if [ -d "$HOME/.oh-my-tmux" ]; then
 	(cd $HOME/.oh-my-tmux && git pull --rebase)
