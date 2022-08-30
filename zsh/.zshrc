@@ -79,7 +79,7 @@ export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/
-plugins=(copybuffer copyfile copypath docker fzf sudo tmux ubuntu vi-mode)
+plugins=(copybuffer copyfile copypath docker sudo tmux ubuntu vi-mode fzf) # fzf has to be last
 # copybuffer: ctrl+o
 
 source $ZSH/oh-my-zsh.sh
