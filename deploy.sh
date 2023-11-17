@@ -159,11 +159,6 @@ ln -s -f $HOME/$BASEDIR/zsh/.zshrc $HOME/.zshrc
 ln -s -f $HOME/$BASEDIR/tmux/.tmux.conf.local $HOME/.tmux.conf.local
 printf "so $HOME/$BASEDIR/vim/vimrc.vim" > $HOME/.vimrc
 
-# ...and some vs code stuff
-mkdir -p $HOME/.config/Code/User/
-ln -s -f $HOME/$BASEDIR/vscode/settings.json $HOME/.config/Code/User/settings.json
-ln -s -f $HOME/$BASEDIR/vscode/keybindings.json $HOME/.config/Code/User/keybindings.json
-
 
 echo
 echo "Please log out and log back in for default shell to be initialized."
