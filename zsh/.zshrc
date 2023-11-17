@@ -17,7 +17,7 @@ ZSH_THEME="agnoster"
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
@@ -118,3 +118,8 @@ alias ctop='TERM="${TERM/#tmux/screen}" ctop'
 
 echo "updating configuration"
 (cd $HOME/dotfiles && git pull --rebase) # && git submodule update --init --recursive)
+
+echo "updating repositories"
+(cd $HOME/.oh-my-zsh && git pull --rebase)
+(cd $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions && git pull --rebase)
+(cd $HOME/.oh-my-tmux && git pull --rebase)
