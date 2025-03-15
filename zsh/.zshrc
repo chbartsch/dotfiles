@@ -123,3 +123,10 @@ echo "updating repositories"
 (cd $HOME/.oh-my-zsh && git pull --rebase)
 (cd $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions && git pull --rebase)
 (cd $HOME/.oh-my-tmux && git pull --rebase)
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export QT_QPA_PLATFORM=xcb
+
